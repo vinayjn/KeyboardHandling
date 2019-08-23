@@ -21,19 +21,19 @@ class KeyboardHandler {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
-    @objc func keyboardWillShow(_ notification:Notification) {
+    @objc private func keyboardWillShow(_ notification:Notification) {
         adjustingHeight(true, notification: notification)
     }
     
-    @objc func keyboardWillHide(_ notification:Notification) {
+    @objc private func keyboardWillHide(_ notification:Notification) {
         adjustingHeight(false, notification: notification)
     }
     
-    @objc func keyboardWillChangeFrame(_ notification: Notification) {
+    @objc private func keyboardWillChangeFrame(_ notification: Notification) {
         adjustingHeight(false, notification: notification)
     }
     
-    func adjustingHeight(_ show:Bool, notification:Notification) {
+    private func adjustingHeight(_ show:Bool, notification:Notification) {
         
         var userInfo = (notification as NSNotification).userInfo!
         let keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
